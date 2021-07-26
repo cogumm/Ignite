@@ -46,6 +46,18 @@ app.post("/account", (req, res) => {
   return res.status(201).send();
 });
 
+/**
+ * Listando o extrato do cliente.
+ */
+app.get("/statement/:cpf", (req, res) => {
+  const { cpf } = req.params;
+
+  // Buscando pelo cpf.
+  const customer = customers.find((customer) => customer.cpf === cpf);
+
+  return res.json(customer.statement);
+});
+
 app.listen(3001, () => {
   console.log("Servidor backend inicializado com sucesso na porta 3001");
 });
