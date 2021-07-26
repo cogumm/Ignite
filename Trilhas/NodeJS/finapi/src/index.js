@@ -26,11 +26,18 @@ const customers = [];
 app.post("/account", (req, res) => {
   const { cpf, name } = req.body;
 
-  // Gerando o id.
-  const id = uuidv4();
+  // Verificando se o cpf já existe no array.
+  const customerAlreadyExists = customers.some(
+    (customer) => customer.cpf === cpf
+  );
+
+  if (customerAlreadyExists) {
+    return res.status(400).json({ error: "Customer already exists!" });
+  }
 
   customers.push({
-    id,
+    // Gerando o id.
+    id: uuidv4(),
     name,
     cpf,
     statement: [],
