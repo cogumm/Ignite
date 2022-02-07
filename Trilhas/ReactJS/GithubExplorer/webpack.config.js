@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: 'development',
+  devtool: 'eval-source-map',
   entry: resolve(__dirname, 'src', 'Index.jsx'),
   output: {
     path: resolve(__dirname, 'dist'),
